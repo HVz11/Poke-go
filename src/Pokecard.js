@@ -1,18 +1,21 @@
 import React, { Component } from "react";
-import './Pokecard.css';
+import "./Pokecard.css";
 
-const POKI_API =
-  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+const POKI_API = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail";
+
+// function for getting id and paading to 3 digit
+let padToThree = (number) => (number <= 999 ? `00${number}`.slice(-3): number);
+
 
 class Pokecard extends Component {
   render() {
-    let imgSrc = `${POKI_API}${this.props.id}.png`; // for adding pokemon image
+    let imgSrc = `${POKI_API}${padToThree(this.props.id)}.png`; // for adding pokemon image
     return (
       <div className="Pokecard">
         <h1 className="Pokecard-title">{this.props.name}</h1>
-        <img src={imgSrc} alt={this.props.name}/>
+        <img src={imgSrc} alt={this.props.name} />
         <div className="pokecard-data">Type: {this.props.type}</div>
-        <div className="Pokecard-data">EXp: {this.props.exp}</div>
+        <div className="Pokecard-data">EXP: {this.props.exp}</div>
       </div>
     );
   }
